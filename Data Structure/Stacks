@@ -1,0 +1,36 @@
+def balanced(expression):
+    # your code goes here
+    class Stack:
+        def __init__(self):
+            self.items = []
+
+        def is_empty(self):
+            return self.items == []
+
+        def push(self, item):
+            self.items.insert(0, item)
+
+        def pop(self):
+            return self.items.pop(0)
+
+        def print_stack(self):
+            print(self.items)
+
+    stack = Stack()
+    if expression.count('(') == 0 or expression.count(')') == 0:
+        return False
+    if expression.count('(') == expression.count(')'):
+        for i in range(len(expression)):
+            if expression[i] == '(':
+                stack.push(i)
+                if ")" in expression[i:]:
+                    stack.pop()
+        if (stack.is_empty()):
+            return True
+        else:
+            return False
+    else:
+        return False
+
+
+print(balanced(input()))
